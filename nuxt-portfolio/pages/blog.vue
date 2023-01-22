@@ -1,19 +1,16 @@
 <template>
   <div>
-    <h1>ブログページ</h1>
-    <p class="text">こんにちは</p>
+    <div v-for="singleData in data" :key="singleData.id">
+      {{ singleData.title }}<br />
+      {{ singleData.date }}<br />
+      {{ singleData }}<br />
+      <hr />
+    </div>
   </div>
 </template>
 
 <script setup>
+const { data } = await useAsyncData("blogQuery", () =>
+  queryContent("/blog").find()
+);
 </script>
-
-<style>
-h1 {
-  color: red;
-}
-.text {
-  color: green;
-  letter-spacing: 20px;
-}
-</style>
